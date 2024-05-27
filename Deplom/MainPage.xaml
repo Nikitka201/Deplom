@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Deplom.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <VerticalStackLayout x:Name="auth">
+                <Entry x:Name= "Login"/>
+                <Entry x:Name="Password" IsPassword="True"/>
+                <Button
+                    x:Name="CounterBtn"
+                    Text="Авторизация" 
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Fill" />
+                <Button Text="Зарегистрироваться"
+                        x:Name="Reg"
+                        Clicked="Reg_Clicked"/>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout x:Name="display" IsVisible="False">
+                <Label Text=" Вы успешно авторизировались, хотите завести новый проект ?"/>
+                <Button Text="Выход"
+                        x:Name="logaut"
+                        Clicked="logaut_Clicked" />
+
+            </VerticalStackLayout>
+                
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
