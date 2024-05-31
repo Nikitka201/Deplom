@@ -67,4 +67,6 @@
 	  <ProjectReference Include="..\Core\Core.csproj" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadUnhandledDeviceExceptionDeplomHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
 </Project>

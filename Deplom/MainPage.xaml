@@ -3,33 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Deplom.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <VerticalStackLayout x:Name="auth">
-                <Entry x:Name= "Login"/>
-                <Entry x:Name="Password" IsPassword="True"/>
-                <Button
-                    x:Name="CounterBtn"
-                    Text="Авторизация" 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
-                    HorizontalOptions="Fill" />
-                <Button Text="Зарегистрироваться"
-                        x:Name="Reg"
-                        Clicked="Reg_Clicked"/>
-            </VerticalStackLayout>
-            
-            <VerticalStackLayout x:Name="display" IsVisible="False">
-                <Label Text=" Вы успешно авторизировались, хотите завести новый проект ?"/>
-                <Button Text="Выход"
-                        x:Name="logaut"
-                        Clicked="logaut_Clicked" />
+    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+        <ScrollView>
+            <VerticalStackLayout>
+                <VerticalStackLayout x:Name="auth">
+                    <Entry x:Name= "Login"/>
+                    <Entry x:Name="Password" IsPassword="True"/>
+                    <Button x:Name="CounterBtn" Text="Авторизация" Clicked="OnCounterClicked" HorizontalOptions="Fill" />
+                    <Button Text="Зарегистрироваться" x:Name="Reg" Clicked="Reg_Clicked"/>
+                </VerticalStackLayout>
+
+                <Grid RowDefinitions="45,45,15,*,45" x:Name="display" IsVisible="False">
+                    <Label Grid.Row="0" Text=" Вы успешно авторизировались, хотите завести новый проект ?" VerticalOptions="Start"/>
+                    <Button Grid.Row="1" Text="Добавить проект" x:Name="AddProjectButton" Clicked="AddProjectButton_Clicked"/>
+                    <Label Grid.Row="2" Text="Ваши проекты:"/>
+                    <ListView Grid.Row="3" x:Name="projectListView" VerticalOptions="FillAndExpand" ItemSelected="projectListView_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid RowDefinitions="*, *">
+                                        <Label Grid.Row="0" Text="{Binding Name}" FontSize="20" Background="AliceBlue" LineBreakMode="WordWrap"/>
+                                        <Label Grid.Row="1" Text="{Binding Description}" FontSize="16" Background="Azure" LineBreakMode="TailTruncation"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Grid.Row="4" Text="Выход" x:Name="logaut" Clicked="logaut_Clicked" VerticalOptions="EndAndExpand"/>
+                </Grid>
+
+                <VerticalStackLayout x:Name="AddProjectLayout" IsVisible="false">
+                    <Label Text="Введите обязательные данные о проекте"/>
+                    <Entry Placeholder="Название проекта" x:Name="projectNameEntry"/>
+                    <Entry Placeholder="Описание проекта" x:Name="projectDescriptionEntry"/>
+                    <Button Text="Добавить" x:Name="AddProjectToUserButton" Clicked="AddProjectToUserButton_Clicked"/>
+                    <Button Text="Назад" x:Name="AddBackButton" Clicked="AddBackButton_Clicked"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout x:Name="ProjectCardsLayout" IsVisible="false">
+                    <Label Text="Карточки проекта: " x:Name="ProjectNameLabel" FontSize="24"/>
+                    <Label Text="Описание проекта: " x:Name="ProjectDescriptionLabel"/>
+                    <ListView x:Name="projectCards">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding Name}"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="CardsBackButton" Text="Назад" Clicked="CardsBackButton_Clicked"/>
+                </VerticalStackLayout>
 
             </VerticalStackLayout>
-                
-        </VerticalStackLayout>
-    </ScrollView>
+        </ScrollView>
+    </Grid>
 
 </ContentPage>
