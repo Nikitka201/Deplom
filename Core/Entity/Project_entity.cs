@@ -12,7 +12,7 @@ namespace Core.Entity
         public string Name { get; set; }
         public string Description { get; set; }
         public List <int> Cardcounts { get; set; }
-        public List <int> CardIds { get; set; }
+        public string CardIds { get; set; }
 
         public int Ownerid { get; set; }
 
